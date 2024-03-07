@@ -1,0 +1,9 @@
+<a href="/user" class="p-1 block text-blue-500 text-slate-800">Kembali</a>
+<span class="inline-block p-3 bg-emerald-200 ">Data berhasil ditambahkan</span>
+
+<div class="flex p-3 border mt-2 flex-col border-black rounded w-[35%]">
+  <p class="text-2xl text-sky-800"><%= user.nama %></p>
+  <p class="text-xs font-bold"><%= user.createAt.toLocaleDateString() %></p>
+  <p><%= user.email %></p>
+  <p><%= user.username %></p>
+</div>

@@ -1,0 +1,8 @@
+<h1>Add user</h1>
+<a href="/user" class="bg-sky-400 my-1 px-2 py-1 rounded text-white inline-block">Back</a>
+<form action="/user" method="post" style="display: flex; align-items: start; flex-direction: column; gap: 1rem;">
+  <input class="border rounded outline-none border-black p-2" type="text" name="nama" placeholder="Nama lengkap" autocomplete="off" value="<%= user.nama %>">
+  <input class="border rounded outline-none border-black p-2" type="email" name="email" placeholder="Email" value="<%= user.email %>">
+  <input class="border rounded outline-none border-black p-2" type="text" name="username" placeholder="username" autocomplete="off" value="<%= user.username %>">
+  <button type="submit" class="p-1 rounded text-white text-xs bg-emerald-600">Daftarkan</button>
+</form>

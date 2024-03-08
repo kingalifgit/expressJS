@@ -60,33 +60,54 @@ app.get("/user/:slug", async (req, res)=>{
   })
 })
 
-app.post("/user", async (req, res) => {
-  let user = new User({
-    nama: req.body.nama,
-    email: req.body.email,
-    username: req.body.username
-  })
-  try{
-    user = await user.save()
-    res.redirect(`/user/${user.slug}`)
-    console.log(user.id)
-  }catch(e){
-    console.log(e)
-    res.render("add-user", {
-      user,
-      layout: ("layouts/mainLayouts"),
-      pageTitle: "Tambah user"
-    })
+app.get("/edit/:id", async (req, res) => {
+  const user = await User.findById(req.params.id)
+  const local = {
+    pageTitle: "Edit user",
+    layout: "layouts/mainLayouts",
+    user
   }
-
+  res.render("edit", local)
 })
+
+app.post("/user", async (req, res, next) => {
+ req.user = new User()
+ next()
+}, saveUser("new"))
+
+app.put("/user/:id", async (req, res, next) => {
+ req.user = await User.findById(req.params.id)
+ next()
+}, saveUser("new"))
 
 app.delete("/user/:id", async (req, res)=>{
   await User.findByIdAndDelete(req.params.id)
   res.redirect("/user")
 })
 
+function saveUser(path){
+  return async (req, res) => {
+    let user = req.user
+      user.nama = req.body.nama
+      user.email = req.body.email
+      user.username = req.body.username
+    
+    try{
+      user = await user.save()
+      res.redirect(`/user`)
+    }catch(e){
+      console.log(e)
+      res.render("add-user", {
+        user,
+        layout: ("layouts/mainLayouts"),
+        pageTitle: "Tambah user"
+      })
+    }
+  }
+}
+
 
 app.use(express.static("public"))
-app.listen("3200")
-console.log("http://127.0.0.1:3200/")
+app.listen("3200", (req, res) =>{
+  console.log("Server jalan di ip: http://127.0.0.1:3200/")
+})

@@ -2,17 +2,17 @@
 <a href="/user/add-user" class="bg-emerald-600 p-2 rounded text-xs text-white my-2 inline-block"><button>Tambah baru</button></a>
 
 <% user.forEach(u => { %>
-  <div class="flex border border-black rounded p-3 my-2 w-[20%]">
-    <div>
+  <div class="mt-2">
+    <div class="border border-slate-300 flex flex-col p-2 rounded shadow">
       <p><%= u.nama %></p>
       <p class=""><%= u.createAt.toLocaleDateString() %></p>
       <p><%= u.email %></p>
       <p class="bg-slate-200 p-1 my-1"><%= u.username %></p>
-      <div class="flex flex-row gap-2">
+      <div class="flex flex-row gap-1">
         <a href="/user/<%= u.slug %>" class="bg-emerald-500 py-1 px-3 text-xs rounded text-white">Info</a>
-        <a href="" class="bg-cyan-500 py-1 px-3 text-xs rounded text-white">Edit</a>
+        <a href="/edit/<%= u.id %>" class="bg-cyan-500 py-1 px-3 text-xs rounded text-white">Edit</a>
         <form action="/user/<%= u.id %>?_method=DELETE" method="POST">
-          <button type="submit" class="bg-red-500 py-1 px-3 text-xs rounded text-white">Hapus</button>
+          <button onclick="return confirm('Yakin dek?')" type="submit" class="bg-red-500 py-1 px-3 text-xs rounded text-white">Hapus</button>
         </form>
       </div>
     </div>

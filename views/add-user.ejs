@@ -1,8 +1,10 @@
 <h1>Add user</h1>
 <a href="/user" class="inline-block my-2">Kembali</a>
-<form action="/user" method="post" style="display: flex; align-items: start; flex-direction: column; gap: 1rem;">
+<form action="/user" enctype="multipart/form-data" method="post" class="w-full flex flex-col gap-1.5">
+  
+  <input class="border rounded outline-none border-black p-2" type="file" name="nama" placeholder="Nama lengkap" autocomplete="off" value="<%= user.nama %>">
   <input class="border rounded outline-none border-black p-2" type="text" name="nama" placeholder="Nama lengkap" autocomplete="off" value="<%= user.nama %>">
   <input class="border rounded outline-none border-black p-2" type="email" name="email" placeholder="Email" value="<%= user.email %>">
   <input class="border rounded outline-none border-black p-2" type="text" name="username" placeholder="username" autocomplete="off" value="<%= user.username %>">
-  <button type="submit" class="p-1 rounded text-white text-xs bg-emerald-600">Daftarkan</button>
+  <button type="submit" class="p-3 rounded text-white text-xs bg-emerald-600">Daftarkan</button>
 </form>

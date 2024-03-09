@@ -7,6 +7,7 @@ const methodOverride = require('method-override')
 // MODELS
 const User = require("./models/user")
 
+
 app.set("view engine", "ejs")
 app.use(expLayouts)
 
@@ -18,6 +19,10 @@ mongoose.connect("mongodb://localhost/blog", {
   useUnifiedTopology: true
 
 })
+
+//Router
+const galeri = require("./routers/galeri")
+app.use("/galeri", galeri)
 
 app.get("/", (req, res)=>{
   const local = {
